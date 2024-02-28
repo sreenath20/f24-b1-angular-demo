@@ -1,21 +1,81 @@
-<h1> Welcome to Angular !</h1>
-<!-- interpolation -->
-<h3>{{title}}</h3>
+<div *ngIf="isEnabled">
+  <h1> Welcome to Angular !</h1>
+  <!-- interpolation -->
+  <h3> title:{{title}}</h3>
+
+  <h3>Structural Directives</h3>
+  <h4>*ngIf</h4>
+  <div *ngIf="title">
+    Title : {{title}}
+  </div>
+
+  <div *ngIf="someProduct">
+
+    <h4>Product details:</h4>
+    <p>
+      id:{{someProduct.id}}
+      name:{{someProduct.name}}
+      price:{{someProduct.price}}
+    </p>
+
+  </div>
+  <button (click)="assignProduct()">assign</button>
 
 
-<img [src] = "imageUrl" alt="Fish image" height="100px" width="100px">
 
-<button (click)="changeImage()">ChangeIMage</button>
+</div>
+
+<div>
+  <h3>ngFor example</h3>
+  <p *ngFor="let fruit of fruits" >
+    {{fruit}}
+  </p>
+</div>
+
+<div>
+  <h3>Display all Products:</h3>
+  <table *ngIf="products">
+
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+    <tr *ngFor="let product of products">
+      <td>{{product.id}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+    </tr>
+  </table>
+
+  <h3> Add new Product: </h3>
+<form id="form1">
+  <label for="pId">Product ID:</label><br>
+  <input type="text" id="pId" name="pId" [(ngModel)] = "product.id">
+  <br>
+  <label for="pName">Product Name:</label><br>
+  <input type="text" id="pName" name="pName" [(ngModel)] = "product.name">
+  <br>
+  <label for="pPrice">Product Price:</label><br>
+  <input type="text" id="pPrice" name="pPrice" [(ngModel)] = "product.price">
+  <br>
+  <button (click)="addNewProduct()">Add Product</button>
+</form> 
+</div>
+
+<!-- <img [src] = "imageUrl" alt="Fish image" height="100px" width="100px">
+
+<button (click)="changeImage()">ChangeIMage</button> -->
 
 <!-- <img src ="./assets/images/fish.jpg"  alt="Fish image"> -->
 
 <!-- property binding -->
-<a href="https://www.w3schools.com"> W3Schools</a> <br>
+<!-- <a href="https://www.w3schools.com"> W3Schools</a> <br>
 <a [href] = "url">Google</a>
-<button [disabled]="isDisabled">Greet</button>
+<button [disabled]="isDisabled">Greet</button> -->
 
 <!-- evevnt binding -->
-<button (click)="greet()">Greeting</button>
+<!-- <button (click)="greet()">Greeting</button>
 
 <p [hidden]=true>
   My para graph 
@@ -38,4 +98,4 @@
   <input type="text" id="pPrice" name="pPrice" [(ngModel)] = "product.price">
   <br>
   <button (click)="addProduct()">Add Product</button>
-</form>
+</form>  -->
