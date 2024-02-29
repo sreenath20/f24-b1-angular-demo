@@ -1,3 +1,16 @@
+<!-- {{demoService.getData()}} -->
+
+<div>
+  <h3>ngSwitch example</h3>
+  <div [ngSwitch]="choice">
+    <p *ngSwitchCase="1" >Para 1</p>
+    <p *ngSwitchCase="2">Para 2</p>
+    <p *ngSwitchCase="3">Para 3</p>
+    <p *ngSwitchDefault>Default Para </p>
+  </div>
+</div>
+
+
 <div *ngIf="isEnabled">
   <h1> Welcome to Angular !</h1>
   <!-- interpolation -->
@@ -20,47 +33,47 @@
 
   </div>
   <button (click)="assignProduct()">assign</button>
-
-
-
 </div>
 
 <div>
   <h3>ngFor example</h3>
-  <p *ngFor="let fruit of fruits" >
-    {{fruit}}
+  <p *ngFor="let fruit of fruits;let i=index">
+    {{i}}:{{fruit}}
   </p>
 </div>
 
 <div>
   <h3>Display all Products:</h3>
-  <table *ngIf="products">
-
+  <h6 *ngIf="products.length <1">No products to display.</h6>
+  <table *ngIf="products.length >0">
     <tr>
-      <th>Id</th>
+      <th>Sl No</th>
       <th>Name</th>
       <th>Price</th>
     </tr>
-    <tr *ngFor="let product of products">
-      <td>{{product.id}}</td>
+    <tr *ngFor="let product of products; let i=index">
+      <!-- <td>{{product.id}}</td> -->
+      <td>{{i+1}}</td>
       <td>{{product.name}}</td>
       <td>{{product.price}}</td>
     </tr>
   </table>
-
-  <h3> Add new Product: </h3>
-<form id="form1">
-  <label for="pId">Product ID:</label><br>
-  <input type="text" id="pId" name="pId" [(ngModel)] = "product.id">
-  <br>
-  <label for="pName">Product Name:</label><br>
-  <input type="text" id="pName" name="pName" [(ngModel)] = "product.name">
-  <br>
-  <label for="pPrice">Product Price:</label><br>
-  <input type="text" id="pPrice" name="pPrice" [(ngModel)] = "product.price">
-  <br>
-  <button (click)="addNewProduct()">Add Product</button>
-</form> 
+<button (click)="enableAddProduct()">Add Product</button>
+  <div *ngIf = "isAddEnabled">
+    <h3> Add new Product: </h3>
+    <form id="form1">
+      <label for="pId">Product ID:</label><br>
+      <input type="text" id="pId" name="pId" [(ngModel)]="product.id">
+      <br>
+      <label for="pName">Product Name:</label><br>
+      <input type="text" id="pName" name="pName" [(ngModel)]="product.name">
+      <br>
+      <label for="pPrice">Product Price:</label><br>
+      <input type="text" id="pPrice" name="pPrice" [(ngModel)]="product.price">
+      <br>
+      <button (click)="addNewProduct()">Add Product</button>
+    </form>
+  </div>
 </div>
 
 <!-- <img [src] = "imageUrl" alt="Fish image" height="100px" width="100px">
