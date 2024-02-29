@@ -1,0 +1,116 @@
+<p>demo works!</p>
+
+<!-- {{demoService.getData()}} -->
+
+<div>
+    <h3>ngSwitch example</h3>
+    <div [ngSwitch]="choice">
+      <p *ngSwitchCase="1" >Para 1</p>
+      <p *ngSwitchCase="2">Para 2</p>
+      <p *ngSwitchCase="3">Para 3</p>
+      <p *ngSwitchDefault>Default Para </p>
+    </div>
+  </div>
+  
+  
+  <div *ngIf="isEnabled">
+    <h1> Welcome to Angular !</h1>
+    <!-- interpolation -->
+    <h3> title:{{title}}</h3>
+  
+    <h3>Structural Directives</h3>
+    <h4>*ngIf</h4>
+    <div *ngIf="title">
+      Title : {{title}}
+    </div>
+  
+    <div *ngIf="someProduct">
+  
+      <h4>Product details:</h4>
+      <p>
+        id:{{someProduct.id}}
+        name:{{someProduct.name}}
+        price:{{someProduct.price}}
+      </p>
+  
+    </div>
+    <button (click)="assignProduct()">assign</button>
+  </div>
+  
+  <div>
+    <h3>ngFor example</h3>
+    <p *ngFor="let fruit of fruits;let i=index">
+      {{i}}:{{fruit}}
+    </p>
+  </div>
+  
+  <div>
+    <h3>Display all Products:</h3>
+    <h6 *ngIf="products.length <1">No products to display.</h6>
+    <table *ngIf="products.length >0">
+      <tr>
+        <th>Sl No</th>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+      <tr *ngFor="let product of products; let i=index">
+        <!-- <td>{{product.id}}</td> -->
+        <td>{{i+1}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+    </table>
+  <button (click)="enableAddProduct()">Add Product</button>
+    <div *ngIf = "isAddEnabled">
+      <h3> Add new Product: </h3>
+      <form id="form1">
+        <label for="pId">Product ID:</label><br>
+        <input type="text" id="pId" name="pId" [(ngModel)]="product.id">
+        <br>
+        <label for="pName">Product Name:</label><br>
+        <input type="text" id="pName" name="pName" [(ngModel)]="product.name">
+        <br>
+        <label for="pPrice">Product Price:</label><br>
+        <input type="text" id="pPrice" name="pPrice" [(ngModel)]="product.price">
+        <br>
+        <button (click)="addNewProduct()">Add Product</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- <img [src] = "imageUrl" alt="Fish image" height="100px" width="100px">
+  
+  <button (click)="changeImage()">ChangeIMage</button> -->
+  
+  <!-- <img src ="./assets/images/fish.jpg"  alt="Fish image"> -->
+  
+  <!-- property binding -->
+  <!-- <a href="https://www.w3schools.com"> W3Schools</a> <br>
+  <a [href] = "url">Google</a>
+  <button [disabled]="isDisabled">Greet</button> -->
+  
+  <!-- evevnt binding -->
+  <!-- <button (click)="greet()">Greeting</button>
+  
+  <p [hidden]=true>
+    My para graph 
+    here
+  </p>
+  <br>
+  <h3>Two way data binding.</h3>
+  
+    <input type="text" id="userName" [(ngModel)]="name">
+    <button (click)="displayName()">Display</button>
+  <h3> Add new Product: </h3>
+  <form id="form1">
+    <label for="pId">Product ID:</label><br>
+    <input type="text" id="pId" name="pId" [(ngModel)] = "product.id">
+    <br>
+    <label for="pName">Product Name:</label><br>
+    <input type="text" id="pName" name="pName" [(ngModel)] = "product.name">
+    <br>
+    <label for="pPrice">Product Price:</label><br>
+    <input type="text" id="pPrice" name="pPrice" [(ngModel)] = "product.price">
+    <br>
+    <button (click)="addProduct()">Add Product</button>
+  </form>  -->
