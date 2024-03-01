@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -9,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
 
+  constructor(private router:Router){}
+  registerUser(){
+
+    console.log("User registered successfully!");
+    this.router.navigateByUrl("login");
+  }
 }

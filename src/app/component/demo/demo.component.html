@@ -1,49 +1,121 @@
 <p>demo works!</p>
 
+<div>
+  <h3>Agular pipes</h3>
+  <p>{{currentDate }} </p>
+  <p>{{currentDate | date}} </p>
+  <p>{{currentDate | date:'short'}} </p>
+  <p>{{title}}</p>
+  <p>{{title | uppercase}}</p>
+  <p>{{title | lowercase}}</p>
+</div>
+<div>
+  <!--output '$0.26'-->
+  <p>A: {{ a | currency }}</p>
+
+  <!--output 'CA$0.26'-->
+  <p>A: {{ a | currency: 'CAD' }}</p>
+
+  <!--output 'CAD0.26'-->
+  <p>A: {{ a | currency: 'CAD' : 'code' }}</p>
+
+  <!--output 'CA$0,001.35'-->
+  <p>B: {{ b | currency: 'CAD' : 'symbol' : '2.2-4' }}</p>
+
+  <!--output '$0,001.35'-->
+  <p>B: {{ b | currency: 'CAD' : 'symbol-narrow' : '4.2-2' }}</p>
+
+  <!--output '0 001,35 CA$'-->
+  <p>B: {{ b | currency: 'INR' : 'symbol' : '4.2-2' }}</p>
+
+  <!--output 'CLP1' because CLP has no cents-->
+  <p>B: {{ b | currency: 'CLP' }}</p>
+
+  {{3.6 | number: '1.0-0'}}
+  <!--will output '4'-->
+  <br>
+
+  {{-3.64 | number:'1.1-1'}}
+  <!--will output '-4'-->
+
+  <p>
+    No specified formatting:
+    {{ pi | number }}
+    <!--output: '3.142'-->
+  </p>
+
+  <p>
+    With digitsInfo parameter specified:
+    {{ pi | number: '4.1-5' }}
+    <!--output: '0,003.14159'-->
+  </p>
+
+  <p>
+    With digitsInfo and locale parameters specified:
+    {{ pi | number: '4.1-5' }}
+    <!--output: '0 003,14159'-->
+  </p>
+  <p>{{a}}</p>
+  <p> {{a | percent}}</p>
+  <p> {{a | percent : '2.2-2'}}</p>
+
+  <p>Without JSON pipe:</p>
+  <pre>{{ object }}</pre>
+  <p>With JSON pipe:</p>
+  <pre>{{ object | json }}</pre>
+  <div><code>observable|async</code>:
+    Time: {{ time | async }}</div>
+  <h3>Custom pipe square</h3>
+    <p> {{ 5 | square}}</p>
+    <p> {{ 25 | square}}</p>
+    
+</div>
+
 <!-- {{demoService.getData()}} -->
 
 <div>
-    <h3>ngSwitch example</h3>
-    <div [ngSwitch]="choice">
-      <p *ngSwitchCase="1" >Para 1</p>
-      <p *ngSwitchCase="2">Para 2</p>
-      <p *ngSwitchCase="3">Para 3</p>
-      <p *ngSwitchDefault>Default Para </p>
-    </div>
+  <h3>ngSwitch example</h3>
+  <div [ngSwitch]="choice">
+    <p *ngSwitchCase="1">Para 1</p>
+    <p *ngSwitchCase="2">Para 2</p>
+    <p *ngSwitchCase="3">Para 3</p>
+    <p *ngSwitchDefault>Default Para </p>
   </div>
-  
-  
-  <div *ngIf="isEnabled">
-    <h1> Welcome to Angular !</h1>
-    <!-- interpolation -->
-    <h3> title:{{title}}</h3>
-  
-    <h3>Structural Directives</h3>
-    <h4>*ngIf</h4>
-    <div *ngIf="title">
-      Title : {{title}}
-    </div>
-  
-    <div *ngIf="someProduct">
-  
-      <h4>Product details:</h4>
-      <p>
-        id:{{someProduct.id}}
-        name:{{someProduct.name}}
-        price:{{someProduct.price}}
-      </p>
-  
-    </div>
-    <button (click)="assignProduct()">assign</button>
+</div>
+
+
+<div *ngIf="isEnabled">
+  <h1> Welcome to Angular !</h1>
+  <!-- interpolation -->
+  <h3> title:{{title}}</h3>
+
+  <h3>Structural Directives</h3>
+  <h4>*ngIf</h4>
+  <div *ngIf="title">
+    Title : {{title}}
   </div>
-  
-  <div>
-    <h3>ngFor example</h3>
-    <p *ngFor="let fruit of fruits;let i=index">
-      {{i}}:{{fruit}}
+
+  <div *ngIf="someProduct">
+
+    <h4>Product details:</h4>
+    <p>
+      id:{{someProduct.id}}
+      name:{{someProduct.name}}
+      price:{{someProduct.price}}
     </p>
+
   </div>
-  
+  <button (click)="assignProduct()">assign</button>
+</div>
+
+<div>
+  <h3>ngFor example</h3>
+  <p *ngFor="let fruit of fruits;let i=index">
+    {{i}}:{{fruit}}
+  </p>
+</div>
+
+<div class="grid-container">
   <div>
     <h3>Display all Products:</h3>
     <h6 *ngIf="products.length <1">No products to display.</h6>
@@ -60,37 +132,40 @@
         <td>{{product.price}}</td>
       </tr>
     </table>
-  <button (click)="enableAddProduct()">Add Product</button>
-    <div *ngIf = "isAddEnabled">
-      <h3> Add new Product: </h3>
-      <form id="form1">
-        <label for="pId">Product ID:</label><br>
-        <input type="text" id="pId" name="pId" [(ngModel)]="product.id">
-        <br>
-        <label for="pName">Product Name:</label><br>
-        <input type="text" id="pName" name="pName" [(ngModel)]="product.name">
-        <br>
-        <label for="pPrice">Product Price:</label><br>
-        <input type="text" id="pPrice" name="pPrice" [(ngModel)]="product.price">
-        <br>
-        <button (click)="addNewProduct()">Add Product</button>
-      </form>
-    </div>
+    <button (click)="enableAddProduct()">Add Product</button>
+
   </div>
-  
-  <!-- <img [src] = "imageUrl" alt="Fish image" height="100px" width="100px">
+
+  <div *ngIf="isAddEnabled">
+    <h3> Add new Product: </h3>
+    <form id="form1">
+      <label for="pId">Product ID:</label><br>
+      <input type="text" id="pId" name="pId" [(ngModel)]="product.id">
+      <br>
+      <label for="pName">Product Name:</label><br>
+      <input type="text" id="pName" name="pName" [(ngModel)]="product.name">
+      <br>
+      <label for="pPrice">Product Price:</label><br>
+      <input type="text" id="pPrice" name="pPrice" [(ngModel)]="product.price">
+      <br>
+      <button (click)="addNewProduct()">Add Product</button>
+    </form>
+  </div>
+</div>
+
+<!-- <img [src] = "imageUrl" alt="Fish image" height="100px" width="100px">
   
   <button (click)="changeImage()">ChangeIMage</button> -->
-  
-  <!-- <img src ="./assets/images/fish.jpg"  alt="Fish image"> -->
-  
-  <!-- property binding -->
-  <!-- <a href="https://www.w3schools.com"> W3Schools</a> <br>
+
+<!-- <img src ="./assets/images/fish.jpg"  alt="Fish image"> -->
+
+<!-- property binding -->
+<!-- <a href="https://www.w3schools.com"> W3Schools</a> <br>
   <a [href] = "url">Google</a>
   <button [disabled]="isDisabled">Greet</button> -->
-  
-  <!-- evevnt binding -->
-  <!-- <button (click)="greet()">Greeting</button>
+
+<!-- evevnt binding -->
+<!-- <button (click)="greet()">Greeting</button>
   
   <p [hidden]=true>
     My para graph 
