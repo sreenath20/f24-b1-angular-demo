@@ -8,7 +8,51 @@
   <p>{{title}}</p>
   <p>{{title | uppercase}}</p>
   <p>{{title | lowercase}}</p>
+  <p> Custom Power pipe</p>
+  <p> {{5 | power:3 }}</p>
+  <p> Sum of numbers</p>
+  <p> {{ 5 | sum:45:55:75}}</p>
+  <p>Sort products by name:</p>
+  <div>
+    <h3>Display all Products: [Sorting thru pipes]</h3>
+    <h6 *ngIf="products.length <1">No products to display.</h6>
+    Search:<br>
+    <input type="text" id="search" name="search"
+     [(ngModel)]="inputQuery"><br>
+    <button (click)="searchProduct()">Serarch</button>
+    <table *ngIf="products.length >0">
+      <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+      <tr *ngFor='let product of products
+       | searchProduct:query; let i=index'>
+        <!-- <td>{{product.id}}</td> -->
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+    </table>
+    <table *ngIf="products.length >0">
+      <tr>
+        <th>Sl No</th>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+      <tr *ngFor="let product of products | sortProduct:'name'; let i=index">
+        <!-- <td>{{product.id}}</td> -->
+        <td>{{i+1}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+    </table>
+    
+
+  </div>
+
 </div>
+
 <div>
   <!--output '$0.26'-->
   <p>A: {{ a | currency }}</p>
@@ -66,9 +110,9 @@
   <div><code>observable|async</code>:
     Time: {{ time | async }}</div>
   <h3>Custom pipe square</h3>
-    <p> {{ 5 | square}}</p>
-    <p> {{ 25 | square}}</p>
-    
+  <p> {{ 5 | square}}</p>
+  <p> {{ 25 | square}}</p>
+
 </div>
 
 <!-- {{demoService.getData()}} -->

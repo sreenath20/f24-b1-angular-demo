@@ -6,14 +6,24 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
 import { SquarePipe } from '../../pipes/square.pipe';
+import { PowerPipe } from '../../pipes/power.pipe';
+import { SumPipe } from '../../pipes/sum.pipe';
+import { SortProductPipe } from '../../pipes/sort-product.pipe';
+import { SearchProductPipe } from '../../pipes/search-product.pipe';
 @Component({
   selector: 'app-demo',
   standalone: true,
-  imports: [CommonModule, FormsModule,SquarePipe],
+  imports: [CommonModule, FormsModule,SquarePipe,PowerPipe,SumPipe, SortProductPipe,SearchProductPipe],
   templateUrl: './demo.component.html',
   styleUrl: './demo.component.css'
 })
 export class DemoComponent {
+
+  query:string="";
+  inputQuery:string="";
+  searchProduct(){
+    this.query=this.inputQuery;
+  }
 
   time = new Observable<string>((observer: Observer<string>) => {
     setInterval(() => observer.next(new Date().toString()), 1000);
@@ -54,6 +64,8 @@ export class DemoComponent {
     this.products.push(new Product(1, "Mouse", 33.00));
     this.products.push(new Product(5, "Charger", 77.00));
     this.products.push(new Product(2, "Cable", 55.00));
+    this.products.push(new Product(99, "Apple Charger", 77.00));
+    this.products.push(new Product(100, "Apple Cable", 55.00));
     this.demoService.setData(555);
     console.log(this.demoService.getData());
   }
