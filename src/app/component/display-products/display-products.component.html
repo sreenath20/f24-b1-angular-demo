@@ -1,14 +1,29 @@
 <p>display-products works!</p>
-<table *ngIf="products.length >0">
-    <tr>
-      <th>id</th>
-      <th>Name</th>
-      <th>Price</th>
-    </tr>
-    <tr *ngFor='let product of products; let i=index'>
-     
-      <td>{{product.id}}</td>
-      <td>{{product.name}}</td>
-      <td>{{product.price}}</td>
-    </tr>
+
+<div class="container">
+  <h3 *ngIf="products.length <1" class="text-info"> No Products Found. </h3>
+  <table *ngIf="products.length >0" class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let product of products; let i=index'>
+
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+        <td><button class="button button-danger"
+           (click)="deleteProductById(product.id)">Delete</button>
+           <button class="button button-danger"
+           (click)="updateProduct(product)">Update</button>
+          </td>
+      </tr>
+    </tbody>
+
   </table>
+</div>

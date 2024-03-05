@@ -1,0 +1,25 @@
+<p>add-product works!</p>
+
+
+<div  >
+    <h3> Add new Product: </h3>
+    
+    <div class="alert alert-success" *ngIf="success">
+      <strong>Success!</strong> {{success}}
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      <strong>Danger!</strong> {{errorMessage}}
+    </div>
+  
+    <form id="form1">
+    
+      <label for="pName">Product Name:</label><br>
+      <input type="text" id="pName" name="pName" [(ngModel)]="newProduct.name" required>
+      <br>
+      <label for="pPrice">Product Price:</label><br>
+      <input type="number" id="pPrice" name="pPrice" [(ngModel)]="newProduct.price" required>
+      <br>
+      <input type="submit" (click)="addNewProduct()" class="btn btn-success" value="Add Product">
+    </form>
+
+  </div>
