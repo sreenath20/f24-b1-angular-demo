@@ -9,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  login(){
+    // hit back end get the user role and store
+
+    localStorage.setItem("role","admin");
+  }
 }
